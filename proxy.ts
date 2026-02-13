@@ -17,6 +17,13 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  /*
+   * Allow karaoke routes without authentication
+   */
+  if (pathname.startsWith("/karaoke")) {
+    return NextResponse.next();
+  }
+
   const token = await getToken({
     req: request,
     secret: process.env.AUTH_SECRET,
