@@ -73,7 +73,6 @@ export default function TimingPage() {
     setAudioUrl(audio);
     const linesArray = lyricsText.split("\n").filter((line) => line.trim());
     setLyrics(linesArray);
-    setSingers(JSON.parse(singersData));
     setTimingMode((mode as "word" | "line") || "word");
 
     if (mode === "word") {
@@ -84,8 +83,9 @@ export default function TimingPage() {
       setWords(allWords);
     }
 
-    // Set default singer
-    const parsedSingers = JSON.parse(singersData);
+    // Set default singer from already parsed data
+    const parsedSingers: Singer[] = JSON.parse(singersData);
+    setSingers(parsedSingers);
     if (parsedSingers.length > 0) {
       setCurrentLineSinger(parsedSingers[0].id);
     }
@@ -322,8 +322,8 @@ export default function TimingPage() {
                 style={{
                   width: `${
                     timingMode === "word"
-                      ? (currentIndex / words.length) * 100
-                      : (currentIndex / lyrics.length) * 100
+                      ? words.length > 0 ? (currentIndex / words.length) * 100 : 0
+                      : lyrics.length > 0 ? (currentIndex / lyrics.length) * 100 : 0
                   }%`,
                 }}
               />

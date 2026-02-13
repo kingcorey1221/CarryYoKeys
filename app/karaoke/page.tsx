@@ -12,7 +12,8 @@ export default function KaraokeUploadPage() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file && file.type.startsWith("audio/")) {
+    const supportedTypes = ["audio/mpeg", "audio/wav", "audio/ogg", "audio/mp4", "audio/x-m4a"];
+    if (file && supportedTypes.includes(file.type)) {
       setAudioFile(file);
     }
   };

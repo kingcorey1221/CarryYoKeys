@@ -166,7 +166,7 @@ export default function LyricsPage() {
               id="lyrics"
               value={lyrics}
               onChange={(e) => setLyrics(e.target.value)}
-              placeholder="Enter your lyrics here...&#10;&#10;Use line breaks to separate lines.&#10;You'll be able to assign each line to a singer on the next page."
+              placeholder={`Enter your lyrics here...\n\nUse line breaks to separate lines.\nYou'll be able to assign each line to a singer on the next page.`}
               className="min-h-[300px] font-mono"
             />
             <p className="text-sm text-muted-foreground">
